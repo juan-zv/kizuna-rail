@@ -406,14 +406,217 @@ article.confirmation-page {
 }
 
 @media print {
+    /* Hide non-essential elements globally */
+    header,
+    footer,
+    nav,
+    .btn,
+    button,
+    .mobile-menu-toggle,
+    #mobile-menu-toggle,
+    label[for="mobile-menu-toggle"] {
+        display: none !important;
+    }
+
+    /* Reset body for print */
+    body {
+        background: white !important;
+        color: black !important;
+        font-size: 12pt;
+        line-height: 1.5;
+        min-height: auto;
+    }
+
+    /* Main content adjustments */
+    main {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
     article.confirmation-page {
+        max-width: 100%;
+        margin: 0;
+
+        /* Hide action buttons */
         .confirmation-actions {
-            display: none;
+            display: none !important;
         }
 
+        /* Clean header for print */
         .confirmation-header {
-            background-color: white;
-            border: 2px solid var(--clr-primary);
+            background-color: white !important;
+            border: 2px solid #333;
+            border-radius: 0;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            page-break-inside: avoid;
+
+            .success-icon {
+                animation: none;
+            }
+
+            .confirmation-title {
+                color: black !important;
+                font-size: 18pt;
+            }
+
+            .confirmation-message {
+                color: #333 !important;
+            }
+
+            .booking-reference {
+                background-color: #f5f5f5 !important;
+                border: 2px dashed #333;
+                padding: 0.75rem 1.5rem;
+
+                .reference-label {
+                    color: #666 !important;
+                }
+
+                .reference-number {
+                    color: black !important;
+                    font-size: 14pt;
+                }
+            }
         }
+
+        /* Content section adjustments */
+        .confirmation-content {
+            gap: 1.5rem;
+
+            .section-title {
+                color: black !important;
+                font-size: 14pt;
+                border-bottom: 1px solid #333;
+                page-break-after: avoid;
+            }
+
+            /* Booking details grid */
+            .booking-details {
+                page-break-inside: avoid;
+
+                .details-grid {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 0.75rem;
+
+                    .detail-card {
+                        background-color: #f9f9f9 !important;
+                        border: 1px solid #ccc;
+                        box-shadow: none;
+                        padding: 0.75rem;
+                        page-break-inside: avoid;
+
+                        .detail-content {
+                            .detail-label {
+                                color: #666 !important;
+                            }
+
+                            .detail-value {
+                                color: black !important;
+                            }
+                        }
+                    }
+                }
+            }
+
+            /* Passenger info */
+            .passengers-info {
+                .passengers-list {
+                    gap: 0.75rem;
+
+                    .passenger-info-card {
+                        box-shadow: none;
+                        border: 1px solid #ccc;
+                        page-break-inside: avoid;
+
+                        .passenger-header {
+                            background-color: #f5f5f5 !important;
+
+                            .passenger-title {
+                                color: black !important;
+                            }
+                        }
+
+                        .passenger-details {
+                            .passenger-detail {
+                                .passenger-label {
+                                    color: #666 !important;
+                                }
+
+                                .passenger-value {
+                                    color: black !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            /* Next steps */
+            .next-steps {
+                page-break-inside: avoid;
+
+                .steps-list {
+                    gap: 0.75rem;
+
+                    .step-item {
+                        page-break-inside: avoid;
+
+                        .step-number {
+                            background-color: #333 !important;
+                            color: white !important;
+                            width: 28px;
+                            height: 28px;
+                            font-size: 12pt;
+                        }
+
+                        .step-content {
+                            .step-title {
+                                color: black !important;
+                            }
+
+                            .step-description {
+                                color: #333 !important;
+                            }
+                        }
+                    }
+                }
+            }
+
+            /* Important info section */
+            .important-info {
+                background-color: #f9f9f9 !important;
+                border: 1px solid #ccc;
+                border-left: 4px solid #333;
+                page-break-inside: avoid;
+
+                .info-title {
+                    color: black !important;
+                }
+
+                .info-list li {
+                    color: #333 !important;
+
+                    &::before {
+                        color: #333 !important;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Prevent awkward page breaks */
+    h1, h2, h3 {
+        page-break-after: avoid;
+    }
+
+    section {
+        page-break-inside: avoid;
+    }
+
+    /* Reduce margins on printed page */
+    @page {
+        margin: 1.5cm;
     }
 }
